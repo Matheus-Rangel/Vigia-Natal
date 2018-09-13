@@ -15,12 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home_app import views as home_views
 from map_app import views as map_views
 
 urlpatterns = [
-    path('', home_views.index, name = 'home_index'),
     path('map/', include('map_app.urls')),
-    path('home/', include('home_app.urls')),
     path('admin/', admin.site.urls),
 ]
