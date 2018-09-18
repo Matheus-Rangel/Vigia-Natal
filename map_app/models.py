@@ -8,7 +8,7 @@ class Orgao(models.Model):
 
     #Coordenas geografica da sede do Orgao
     coordenadaS = models.FloatField()
-    coordenadaN = models.FloatField()
+    coordenadaW = models.FloatField()
     def __str__(self):
         return self.nome
 
