@@ -1,0 +1,23 @@
+{% extends "map_app/base.html" %}
+{% block body_block %}
+
+<div class="jumbotron">
+  <h1>Detalhes da despesa</h1>
+  <ul>
+    <li>
+      <h3>Descricao:</h3>
+      <p>{{despesa.descricao}}</p>
+    </li>
+    <li>
+      <h6>Data de inicio: {{despesa.data_inicio}}</h6>
+    </li>
+    <li>
+      <h6>Prazo: {{despesa.prazo}} dias</h6>
+    </li>
+    <li>
+      <h6>Valor: R$ {{despesa.valor}}</h6>
+    </li>
+  </ul>
+</div>
+
+{% endblock %}

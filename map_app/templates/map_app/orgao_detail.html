@@ -1,0 +1,37 @@
+{% extends "map_app/base.html" %}
+{% block body_block %}
+
+<div class="jumbotron">
+  <h1>Detalhes sobre o orgao</h1>
+  <ul>
+    <li>
+      <h3>Nome:<h4>{{orgao.nome}}</h4></h3>
+    </li>
+    <li>
+      <h6>Telefone: {{orgao.telefone}}</h6>
+    </li>
+    <li>
+      <h6>Email: {{orgao.email}} dias</h6>
+    </li>
+    <li>
+      <h6>Site: {{orgao.site}}</h6>
+    </li>
+  </ul>
+</div>
+
+<div class="container-fluid">
+  <ul>
+    {% for despesa in despesa_list %}
+    <li>
+      <div class="despesa">
+        <h4> <a href="{% url 'despesa_detail' pk=despesa.pk %}">{{despesa.descricao}}</a> </h4>
+        <div class="valordespesa">
+          <p>Valor: R${{despesa.valor|floatformat:2}}</p>
+        <div/>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

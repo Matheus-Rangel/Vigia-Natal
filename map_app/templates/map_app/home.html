@@ -1,0 +1,24 @@
+{% extends "map_app/base.html" %}
+
+  {% block head_block %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/map.css" %}">
+    <title>Mapa</title>
+  {% endblock %}
+
+  {% block body_block %}
+    <div class="container-fluid" id="map"></div>
+      <script>
+        var map;
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -5.7793, lng: -35.2009},
+            zoom: 12
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpQLw7f_iBzysGHLSZ5l9aJ2y2OqDwDYE&callback=initMap"
+      async defer></script>
+  {% endblock %}
+
+</html>
