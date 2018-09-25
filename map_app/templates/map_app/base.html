@@ -45,6 +45,8 @@
                 Opções
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'despesa_create' %}">Cadastrar Despesa</a>
+                <a class="dropdown-item" href="{% url 'orgao_create'%}">Cadastrar Orgão</a>
                 <a class="dropdown-item" href="{% url 'despesa_list'%}">Lista de Despesas</a>
                 <a class="dropdown-item" href="{% url 'orgao_list'%}">Lista de Orgãos</a>
               </div>
