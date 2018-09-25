@@ -1,15 +1,8 @@
-<!DOCTYPE html>
 {% extends "map_app/base.html" %}
 
   {% block head_block %}
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 500px;
-        width: 100%;
-      }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/map.css" %}">
     <title>Mapa</title>
   {% endblock %}
 

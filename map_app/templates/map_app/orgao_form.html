@@ -1,0 +1,12 @@
+{% extends "map_app/base.html" %}
+  {% block body_block %}
+  <div class="conteiner">
+    <h1>Cadastrar Orgao</h1>
+    <form class="despesa-form"  method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button type="submit" class='save btn btn-default'>Salvar</button>
+
+    </form>
+  </div>}
+  {% endblock %}

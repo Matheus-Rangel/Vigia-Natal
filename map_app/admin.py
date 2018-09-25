@@ -1,6 +1,6 @@
 from django.contrib import admin
-from map_app.models import Obra, Orgao
+from map_app.models import Despesa, Orgao
 
 # Register your models here.
-admin.site.register(Obra)
+admin.site.register(Despesa)
 admin.site.register(Orgao)

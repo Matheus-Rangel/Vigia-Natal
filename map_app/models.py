@@ -1,26 +1,23 @@
 from django.db import models
 from django.utils import timezone
-from django.core.urlresolvers import reverse
 
-# Create your models here.
 class Orgao(models.Model):
-    nome = models.CharField(max_length = 256, unique = True)
-    telefone = models.CharField(max_length = 32, unique = True)
+    nome = models.CharField(max_length = 256)
+    telefone = models.CharField(max_length = 32)
     email = models.EmailField(unique = True)
+    site = models.URLField()
 
     #Coordenas geografica da sede do Orgao
-    coordenadaS = models.FloatField()
-    coordenadaW = models.FloatField()
     def __str__(self):
         return self.nome
 
-class Obra(models.Model):
+class Despesa(models.Model):
     descricao = models.CharField(max_length = 256)
     valor = models.FloatField()
     data_inicio = models.DateField()
     data_update = models.DateField()
     # prazo em dias
-    prazo = models.IntegerField()
+    prazo = models.IntegerField(blank=True, null=True)
 
     # Coordenas geograficas da localizacao da obra0
     coordenadaS = models.FloatField()
@@ -31,3 +28,9 @@ class Obra(models.Model):
 
     def __str__(self):
         return self.descricao
+
+# class Comentario(models.Model):
+#     autor = models.CharField(max_lenght = 256)
+#     data = models.DateTimeField()
+#     texto = models.TextField()
+#     orgao = models.ForeignKey(Orgao, on_delete = models.CASCADE)

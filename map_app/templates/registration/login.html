@@ -1,0 +1,20 @@
+{% extends 'map_app/base.html' %}
+
+
+{% block body_block %}
+<div class="jumbotron">
+  <h2>Por Favor, realize o Login:</h2>
+  <h3>(Apenas para administradores)</h3>
+
+  {% if form.errors %}
+    <p>Usuario ou senha incorretos.</p>
+  {% endif %}
+
+  <form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+      {{form.as_p}}
+      <input type="submit", class = 'btn btn-primary' value="Login">
+      <input type="hidden" name="next" value="{{next}}">
+  </form>
+</div>
+{% endblock %}

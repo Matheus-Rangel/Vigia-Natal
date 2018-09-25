@@ -1,0 +1,17 @@
+{% extends "map_app/base.html" %}
+{% block body_block %}
+
+  <ul>
+    {% for despesa in despesa_list %}
+    <li>
+      <div class="despesa conteiner">
+        <h6> <a href="{% url 'despesa_detail' pk=despesa.pk %}">{{despesa.descricao}}</a> </h6>
+        <div class="valordespesa">
+          <p class="lead">Valor: R${{despesa.valor|floatformat:2}}</p>
+        <div/>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
