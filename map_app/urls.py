@@ -3,6 +3,7 @@ from map_app import views
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name = 'home'),
+    path('dados_gerais', views.DadosGeraisView.as_view(), name = 'dados_gerais'),
     path('despesa/list', views.DespesaListView.as_view(), name = 'despesa_list'),
     path('orgao/list', views.OrgaoListView.as_view(), name = 'orgao_list'),
     path('despesa/<int:pk>/', views.DespesaDetailView.as_view(), name = 'despesa_detail'),
