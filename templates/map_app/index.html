@@ -13,6 +13,25 @@
     <title>Mapa</title>
   {% endblock %}
 
+  {% block nav_block %}
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">
+          Home
+          <span class="sr-only">(current)</span> 
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="dados_gerais">Dados Gerais</span></a>
+      </li>
+          
+      <li class="nav-item">
+        <a class="nav-link" href="#">Compartilhe</a>
+      </li>
+    </ul>
+  {% endblock %}
+
   {% block body_block %}
     <div class="container-fluid" id="map"></div>
       <script>

@@ -18,6 +18,6 @@ from django.urls import path, include
 from map_app import views as map_views
 
 urlpatterns = [
-    path('map/', include('map_app.urls')),
+    path('', include('map_app.urls')),
     path('admin/', admin.site.urls),
 ]
