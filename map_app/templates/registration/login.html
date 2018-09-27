@@ -6,15 +6,21 @@
   <h2>Por Favor, realize o Login:</h2>
   <h3>(Apenas para administradores)</h3>
 
-  {% if form.errors %}
-    <p>Usuario ou senha incorretos.</p>
-  {% endif %}
-
-  <form action="{% url 'login' %}" method="POST">
+  <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-      {{form.as_p}}
-      <input type="submit", class = 'btn btn-primary' value="Login">
-      <input type="hidden" name="next" value="{{next}}">
+    <table>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+
+    <input type="submit", class = 'btn btn-primary' value="login">
+    <input type="hidden" name="next" value="{{ next }}">
   </form>
 </div>
 {% endblock %}
