@@ -1,0 +1,446 @@
+{% extends "map_app/base.html" %}
+
+  {% block head_block %}
+    <style>
+      .chart {
+        padding-bottom: 50px;
+      }
+    </style>
+
+    <title>Dados Gerais</title>
+  {% endblock %}
+
+  {% block body_block %}
+    <div class="container">
+      <div class="row">
+        <h1>Despesas por Instituições</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 chart">
+          <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4 chart">
+          <canvas id="myChart3"></canvas>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4 chart">
+          <canvas id="myChart4"></canvas>
+        </div>
+      </div>
+      
+      <div class="row" >
+        <table class="table table-sm">
+          <thead  class="thead-dark">
+              <tr>
+                <th scope="col">Instituição</th>
+                
+                <th scope="col">Empenhado</th>
+                
+                <th scope="col">Anulado</th>
+                
+                <th scope="col">Liquidado</th>
+
+                <th scope="col">Pago</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for despesa in despesas_instituicoes %}  
+              <tr>
+                <td>{{despesa.Instituição}}</td>
+                
+                <td>{{despesa.Empenhado}}</td>
+                
+                <td>{{despesa.Anulado}}</td>
+
+                <td>{{despesa.Liquidado}}</td>
+                
+                <td>{{despesa.Pago}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <h1>Despesas da Prefeitura por Orgãos</h1>
+      </div>
+
+      <div class="row">
+        <div class="col chart">
+          <canvas id="dpo"></canvas>
+        </div>
+      </div>
+      
+      <div class="row">
+        <table class="table table-sm">
+          <thead  class="thead-dark">
+              <tr>
+                <th scope="col">Orgão</th>
+                
+                <th scope="col">Empenhado</th>
+                
+                <th scope="col">Anulado</th>
+                
+                <th scope="col">Liquidado</th>
+
+                <th scope="col">Pago</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for despesa in despesa_prefeitura_por_orgaos %}  
+              <tr>
+                <td>{{despesa.Orgão}}</td>
+                
+                <td>{{despesa.Empenhado}}</td>
+                
+                <td>{{despesa.Anulado}}</td>
+
+                <td>{{despesa.Liquidado}}</td>
+                
+                <td>{{despesa.Pago}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <h1>Despesas com Obras e Instalações da Prefeitura por Orgãos</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 chart">
+          <canvas id="doio"></canvas>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4 chart">
+          <canvas id="doio2"></canvas>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4 chart">
+          <canvas id="doio3"></canvas>
+        </div>
+      </div>
+      
+      <div class="row">
+        <table class="table table-sm">
+          <thead  class="thead-dark">
+              <tr>
+                <th scope="col">Orgão</th>
+                
+                <th scope="col">Empenhado</th>
+                
+                <th scope="col">Anulado</th>
+                
+                <th scope="col">Liquidado</th>
+
+                <th scope="col">Pago</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for despesa in despesas_obras_e_instalacoes_por_orgaos %}  
+              <tr>
+                <td>{{despesa.Orgão}}</td>
+                
+                <td>{{despesa.Empenhado}}</td>
+                
+                <td>{{despesa.Anulado}}</td>
+
+                <td>{{despesa.Liquidado}}</td>
+                
+                <td>{{despesa.Pago}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.js"></script>
+
+    <script type="text/javascript">
+      function desenhaGraficosDespesaInst() {
+        let colors = [
+          {% for despesa in despesas_instituicoes %}  
+            randomColor({luminosity: 'dark'}),
+          {% endfor %}
+        ];
+
+        let instituicoes = [
+          {% for despesa in despesas_instituicoes %}  
+            "{{despesa.Instituição}}",
+          {% endfor %}
+        ];
+
+        let dados = [
+          {% for despesa in despesas_instituicoes %}  
+            Number( "{{despesa.Empenhado}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+        let dados3 = [
+          {% for despesa in despesas_instituicoes %}  
+            Number( "{{despesa.Liquidado}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+        let dados4 = [
+          {% for despesa in despesas_instituicoes %}  
+            Number( "{{despesa.Pago}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+
+
+        let ctx = document.getElementById('myChart').getContext('2d');
+        let ctx3 = document.getElementById('myChart3').getContext('2d');
+        let ctx4 = document.getElementById('myChart4').getContext('2d');
+
+        let data = {
+            datasets: [{
+                data: dados,
+                backgroundColor: colors
+            }],
+            labels: instituicoes
+        };
+        let data3 = {
+            datasets: [{
+                data: dados3,
+                backgroundColor: colors
+            }],
+            labels: instituicoes
+        };
+        let data4 = {
+            datasets: [{
+                data: dados4,
+                backgroundColor: colors
+            }],
+            labels: instituicoes
+        };
+
+        new Chart(ctx ,{
+          type: 'doughnut',
+          data: data,
+          options: {
+            title: {
+              display: true,
+              text: 'Valores Empenhados'
+            },
+            legend: {
+              labels: {
+                fontSize: 9,
+                fontStyle: 'bold'
+              }
+            }
+          }
+        });
+        new Chart(ctx3 ,{
+          type: 'doughnut',
+          data: data3,
+          options: {
+            title: {
+              display: true,
+              text: 'Valores Liquidados'
+            },
+            legend: {
+              labels: {
+                fontSize: 9,
+                fontStyle: 'bold'
+              }
+            }
+          }
+        });
+        new Chart(ctx4 ,{
+          type: 'doughnut',
+          data: data4,
+          options: {
+            title: {
+              display: true,
+              text: 'Valores Pagos'
+            },
+            legend: {
+              labels: {
+                fontSize: 9,
+                fontStyle: 'bold'
+              }
+            }
+          }
+        });
+      }
+
+      function desenhaGraficosDespesaPrefOrgaos() {
+        let orgaos = [
+          {% for despesa in despesa_prefeitura_por_orgaos %}  
+            "{{despesa.Orgão}}",
+          {% endfor %}
+        ];
+
+        let dados = [
+          {% for despesa in despesa_prefeitura_por_orgaos %}  
+            Number( "{{despesa.Empenhado}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+        let dados3 = [
+          {% for despesa in despesa_prefeitura_por_orgaos %}  
+            Number( "{{despesa.Liquidado}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+        let dados4 = [
+          {% for despesa in despesa_prefeitura_por_orgaos %}  
+            Number( "{{despesa.Pago}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+
+
+        let ctx = document.getElementById('dpo').getContext('2d');
+
+        let data = {
+            labels: orgaos,
+            datasets: [{
+                data: dados,
+                label: "Empenhado",
+                borderColor: "green",
+                fill: false
+              }, {
+                data: dados3,
+                label: "Liquidado",
+                borderColor: "blue",
+                fill: false
+              }, {
+                data: dados4,
+                label: "Pago",
+                borderColor: "red",
+                fill: false
+              }
+            ]
+        };
+
+        new Chart(ctx ,{
+          type: 'line',
+          data: data,
+          options: {
+
+          }
+        });
+      }
+
+      function desenhaGraficosDespesaObrasOrgaos() {
+        let colors = [
+          {% for despesa in despesas_obras_e_instalacoes_por_orgaos %}  
+            randomColor({luminosity: 'dark'}),
+          {% endfor %}
+        ];
+
+        let orgaos = [
+          {% for despesa in despesas_obras_e_instalacoes_por_orgaos %}  
+            "{{despesa.Orgão}}",
+          {% endfor %}
+        ];
+
+        let dados = [
+          {% for despesa in despesas_obras_e_instalacoes_por_orgaos %}  
+            Number( "{{despesa.Empenhado}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+        let dados3 = [
+          {% for despesa in despesas_obras_e_instalacoes_por_orgaos %}  
+            Number( "{{despesa.Liquidado}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+        let dados4 = [
+          {% for despesa in despesas_obras_e_instalacoes_por_orgaos %}  
+            Number( "{{despesa.Pago}}".replace(/\./g,'').replace(/\,/g,'.') ),
+          {% endfor %}
+        ];
+
+
+        let ctx = document.getElementById('doio').getContext('2d');
+        let ctx3 = document.getElementById('doio2').getContext('2d');
+        let ctx4 = document.getElementById('doio3').getContext('2d');
+
+        let data = {
+            datasets: [{
+                data: dados,
+                backgroundColor: colors
+            }],
+            labels: orgaos
+        };
+        let data3 = {
+            datasets: [{
+                data: dados3,
+                backgroundColor: colors
+            }],
+            labels: orgaos
+        };
+        let data4 = {
+            datasets: [{
+                data: dados4,
+                backgroundColor: colors
+            }],
+            labels: orgaos
+        };
+
+        new Chart(ctx ,{
+          type: 'doughnut',
+          data: data,
+          options: {
+            title: {
+              display: true,
+              text: 'Valores Empenhados'
+            },
+            legend: {
+              labels: {
+                fontSize: 9,
+                fontStyle: 'bold'
+              }
+            }
+          }
+        });
+        new Chart(ctx3 ,{
+          type: 'doughnut',
+          data: data3,
+          options: {
+            title: {
+              display: true,
+              text: 'Valores Liquidados'
+            },
+            legend: {
+              labels: {
+                fontSize: 9,
+                fontStyle: 'bold'
+              }
+            }
+          }
+        });
+        new Chart(ctx4 ,{
+          type: 'doughnut',
+          data: data4,
+          options: {
+            title: {
+              display: true,
+              text: 'Valores Pagos'
+            },
+            legend: {
+              labels: {
+                fontSize: 9,
+                fontStyle: 'bold'
+              }
+            }
+          }
+        });
+      }
+
+      desenhaGraficosDespesaInst();
+      desenhaGraficosDespesaPrefOrgaos();
+      desenhaGraficosDespesaObrasOrgaos();
+    </script>
+  {% endblock %}
+
+</html>
