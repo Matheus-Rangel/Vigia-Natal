@@ -79,7 +79,7 @@ class DadosGeraisView(TemplateView):
               "Pago": "609.069,39"
            }
         ]""")
-        context['despesa_prefeitura_por_orgaos'] = json.loads(r""" 
+        context['despesa_prefeitura_por_orgaos'] = json.loads(r"""
         [
            {
               "Orgão": "SECRETARIA MUNICIPAL DE SAUDE",
@@ -308,25 +308,25 @@ class DespesaDetailView(DetailView):
 class OrgaoDetailView(DetailView):
     model = Orgao
     def get_context_data(self, **kwargs):
-        context = super(OrgaoDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['despesa_list'] = Despesa.objects.filter(orgao = self.kwargs['pk'])
         return context
 
 class CreateDespesaView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
-    redirect_field_name = 'map_app/Despesa_info.html'
+    redirect_field_name = 'map_app/despesa_detail.html'
     form_class = DespesaForm
     model = Despesa
 
 class CreateOrgaoView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
-    redirect_field_name = 'map_app/orgao_info.html'
+    redirect_field_name = 'map_app/orgao_detail.html'
     form_class = OrgaoForm
     model = Orgao
 
 class DespesaUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
-    redirect_field_name = 'map_app/Despesa_info.html'
+    redirect_field_name = 'map_app/despesa_detail.html'
     form_class = DespesaForm
     model = Despesa
 

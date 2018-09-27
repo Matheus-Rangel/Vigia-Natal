@@ -24,7 +24,7 @@
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
-          {% if user.is_authentiacted %}
+          {% if user.is_authenticated %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Opções
@@ -45,14 +45,11 @@
                 Opções
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'despesa_create' %}">Cadastrar Despesa</a>
-                <a class="dropdown-item" href="{% url 'orgao_create'%}">Cadastrar Orgão</a>
                 <a class="dropdown-item" href="{% url 'despesa_list'%}">Lista de Despesas</a>
                 <a class="dropdown-item" href="{% url 'orgao_list'%}">Lista de Orgãos</a>
               </div>
             </li>
             <li><a href="{% url 'login' %}" class="btn btn-primary mr-1 mt-1" role="button" >Entrar</a></li>
-            <li><a href="#" class="btn btn-secondary mr-1 mt-1"  role="button" >Cadastrar</a></li>
           {% endif %}
             </ul>
           </div>
