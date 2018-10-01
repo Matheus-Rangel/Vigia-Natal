@@ -2,9 +2,10 @@ import json
 
 from django.shortcuts import render
 from django.utils import timezone
+from django.core.serializers import serialize
 
-from map_app.models import Despesa, Orgao
-from map_app.forms import DespesaForm, OrgaoForm
+from map_app.models import Despesa, Orgao, Instituicao
+from map_app.forms import DespesaForm, OrgaoForm, InstituicaoForm
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,11 +16,31 @@ from django.views.generic import (TemplateView, DetailView, ListView,
 
 class HomeView(TemplateView):
     template_name = 'home.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['despesasjson'] = serialize('json', Despesa.objects.all(), )
+        context['orgaosjson'] =
+        context['instituicoesjson'] =
+
 
 class DadosGeraisView(TemplateView):
+    # class DespesaInstituicao():
+    #     Instituição
+    #     Empenhado
+    #     Anulado
+    #     Liquidado
+    #     Pago
+
     template_name = 'dados_gerais.html'
     def get_context_data(self, **kwargs):
         context = super(DadosGeraisView, self).get_context_data(**kwargs)
+        # instituicoes = Instituicoes.objects.all()
+        # for i in instituicoes:
+        #      orgaos = Orgao.objects.filter(instituicao = i)
+        #      despesas = None
+        #      for o in orgaos:
+        #          despesas = Despesa.objects.filter(orgao = o)
+
         context['despesas_instituicoes'] = json.loads(r"""
         [
            {
@@ -292,6 +313,7 @@ class DadosGeraisView(TemplateView):
         """)
         return context
 
+
 class DespesaListView(ListView):
     model = Despesa
     def get_queryset(self):
@@ -302,6 +324,12 @@ class OrgaoListView(ListView):
     def get_queryset(self):
         return Orgao.objects.all()
 
+class InstituicaoListView(ListView):
+    model = Instituicao
+    def get_queryset(self):
+        return Instituicao.objects.all()
+
+
 class DespesaDetailView(DetailView):
     model = Despesa
 
@@ -310,6 +338,13 @@ class OrgaoDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['despesa_list'] = Despesa.objects.filter(orgao = self.kwargs['pk'])
+        return context
+
+class InstituicaoDetailView(DetailView):
+    model = Instituicao
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['orgao_list'] = Orgao.objects.filter(instituicao = self.kwargs['pk'])
         return context
 
 class CreateDespesaView(LoginRequiredMixin, CreateView):
@@ -324,6 +359,12 @@ class CreateOrgaoView(LoginRequiredMixin, CreateView):
     form_class = OrgaoForm
     model = Orgao
 
+class CreateInstituicaoView(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
+    redirect_field_name = 'map_app/instituicao_detail.html'
+    form_class = InstituicaoForm
+    model = Instituicao
+
 class DespesaUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
     redirect_field_name = 'map_app/despesa_detail.html'
@@ -332,6 +373,12 @@ class DespesaUpdateView(LoginRequiredMixin, UpdateView):
 
 class OrgaoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
-    redirect_field_name = 'map_app/orgao_info.html'
+    redirect_field_name = 'map_app/orgao_detail.html'
     form_class = OrgaoForm
     model = Orgao
+
+class InstituicaoUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
+    redirect_field_name = 'map_app/instituicao_detail.html'
+    form_class = InstituicaoForm
+    model = Instituicao
