@@ -5,8 +5,8 @@ class Localizacao(models.Model):
     estado = models.CharField(max_length = 2)
     cidade = models.CharField(max_length = 50)
     bairro = models.CharField(max_length = 50)
-    endereco = models.CharField(max_length = 256)
-    cep = models.CharField(max_length = 8)
+    endereco = models.CharField(max_length = 256, blank = True)
+    cep = models.CharField(max_length = 8, blank = True)
 
     latitude = models.FloatField(null = False)
     longitude = models.FloatField(null = False)
@@ -19,20 +19,20 @@ class Localizacao(models.Model):
 
 class Instituicao(models.Model):
     nome = models.CharField(max_length = 256)
-    telefone = models.CharField(max_length = 32)
-    email = models.EmailField()
-    site = models.URLField()
-    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True)
+    telefone = models.CharField(max_length = 32, blank = True)
+    email = models.EmailField(blank = True)
+    site = models.URLField(blank = True)
+    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True, blank = True)
     def __str__(self):
         return self.nome
 
 class Orgao(models.Model):
     nome = models.CharField(max_length = 256)
-    telefone = models.CharField(max_length = 32)
-    email = models.EmailField()
-    site = models.URLField()
+    telefone = models.CharField(max_length = 32, blank = True)
+    email = models.EmailField(blank = True)
+    site = models.URLField(blank = True)
     instituicao = models.ForeignKey(Instituicao, on_delete = models.CASCADE)
-    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True)
+    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True, blank = True)
     def __str__(self):
         return self.nome
 
@@ -47,7 +47,7 @@ class Despesa(models.Model):
     data_inicio = models.DateField()
     data_update = models.DateField()
 
-    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True)
+    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True, blank = True)
 
     # Orgao resonsavel pela obra
     orgao = models.ForeignKey(Orgao, on_delete = models.CASCADE)

@@ -53,6 +53,8 @@ class LocalizacaoListAPIView(ListAPIView):
 class LocalizacaoAPIView(RetrieveAPIView):
     lookup_field = 'pk'
     serializer_class = LocalizacaoSerializer
+    def get_queryset(self):
+        return Localizacao.objects.filter(pk = self.kwargs['pk'])
 
 class InstituicaoAPIView(RetrieveAPIView):
     lookup_field = 'pk'
