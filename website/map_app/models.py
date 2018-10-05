@@ -23,7 +23,7 @@ class Instituicao(models.Model):
     telefone = models.CharField(max_length = 32, blank = True)
     email = models.EmailField(blank = True)
     site = models.URLField(blank = True)
-    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True, blank = True)
+    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True)
     def __str__(self):
         return self.nome
 
@@ -33,12 +33,12 @@ class Orgao(models.Model):
     email = models.EmailField(blank = True)
     site = models.URLField(blank = True)
     instituicao = models.ForeignKey(Instituicao, on_delete = models.CASCADE)
-    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True, blank = True)
+    localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True)
     def __str__(self):
         return self.nome
 
 class Despesa(models.Model):
-    descricao = models.CharField(max_length = 256)
+    descricao = models.TextField()
 
     empenhado = models.DecimalField(max_digits=15, decimal_places=2)
     anulado = models.DecimalField(max_digits=15, decimal_places=2)
@@ -46,7 +46,7 @@ class Despesa(models.Model):
     pago = models.DecimalField(max_digits=15, decimal_places=2)
 
     data_inicio = models.DateField()
-    data_update = models.DateField()
+    data_update = models.DateField(auto_now = True)
 
     localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True, blank = True)
 

@@ -5,7 +5,7 @@ from map_app.models import Despesa, Orgao, Instituicao, Localizacao
 class DespesaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Despesa
-        fields = '__all__'
+        exclude = ['data_update']
 
 class OrgaoSerializer(serializers.ModelSerializer):
     class Meta:
