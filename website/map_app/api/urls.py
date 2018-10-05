@@ -2,20 +2,25 @@ from django.contrib import admin
 from django.urls import path, include
 from map_app import views as map_views
 from django.contrib.auth import views as auth_views
-from map_app.api import views
+from map_app.api import views_despesa, views_localizacao, views_instituicao_orgao
 urlpatterns = [
-    path('despesa/<int:pk>', views.DespesaAPIView.as_view(), name='despesa_api'),
-    path('despesa/<int:ano>', views.DespesaAnoListAPIView.as_view(), name='despesa_ano_api'),
-    path('despesa/<int:ano>/<int:orgao>', views.DespesaOrgaoListAPIView.as_view(), name = 'despesa_orgao_api'),
-    path('despesa/<int:ano>/<int:instituicao>', views.DespesaInstituicaoListAPIView.as_view(), name = 'despesa_instituicao_api'),
-    path('despesa/<int:ano>/<int:localizacao>', views.DespesaLocalizacaoListAPIView.as_view(), name = 'despesa_localizacao_api'),
+    path('despesa/<int:pk>', views_despesa.DespesaRetriveAPIView.as_view(), name='despesa_id'),
+    path('despesa/<int:ano>', views_despesa.DespesaAnoListAPIView.as_view(), name='despesa_ano'),
+    path('despesa/<int:ano>/<int:orgao>', views_despesa.DespesaOrgaoListAPIView.as_view(), name = 'despesa_orgao'),
+    path('despesa/<int:ano>/<int:instituicao>', views_despesa.DespesaInstituicaoListAPIView.as_view(), name = 'despesa_instituicao'),
+    path('despesa/<int:ano>/<int:localizacao>', views_despesa.DespesaLocalizacaoListAPIView.as_view(), name = 'despesa_localizacao'),
+    path('despesa/create', views_despesa.DespesaCreateAPIView.as_view(), name = 'despesa_create'),
 
-    path('instituicoes', views.InstituicaoListAPIView.as_view(), name = 'instituicao_list_api'),
-    path('instituicao/<int:pk>', views.InstituicaoAPIView.as_view(), name = 'instituicao_api'),
-    path('instituicao/<int:pk>/orgaos', views.InstituicaoOrgaosListAPIView.as_view(), name = 'instituicao_orgao_api'),
+    path('instituicoes', views_instituicao_orgao.InstituicaoListAPIView.as_view(), name = 'instituicao_list'),
+    path('instituicao/pk/<int:pk>', views_instituicao_orgao.InstituicaoRetriveAPIView.as_view(), name = 'instituicao_id_retrive'),
+    path('instituicao/<int:pk>/orgaos', views_instituicao_orgao.InstituicaoOrgaosListAPIView.as_view(), name = 'instituicao_orgao'),
+    path('instituicao/nome/<nome>', views_instituicao_orgao.InstituicaoNomeRetriveAPIView.as_view(), name = 'instituicao_nome_retrive'),
+    path('instituicao/create', views_instituicao_orgao.InstituicaoCreateAPIView.as_view(), name = 'instituicao_create'),
 
-    path('orgao/<int:pk>', views.OrgaoAPIView.as_view(), name = 'orgao_api'),
+    path('orgao/pk/<int:pk>', views_instituicao_orgao.OrgaoRetriveAPIView.as_view(), name = 'orgao_id_retrive'),
+    path('orgao/nome/<nome>', views_instituicao_orgao.OrgaoNomeRetriveAPIView.as_view(), name = 'orgao_nome_retrive'),
+    path('orgao/create', views_instituicao_orgao.OrgaoCreateAPIView.as_view(), name = 'orgao_create'),
 
-    path('localizacao/<int:pk>', views.LocalizacaoAPIView.as_view(), name = 'localizacao_api'),
-    path('localizacao', views.LocalizacaoListAPIView.as_view(), name = 'localizacao_list_api'),
+    path('localizacao/<int:pk>', views_localizacao.LocalizacaoAPIView.as_view(), name = 'localizacao_api'),
+    path('localizacao', views_localizacao.LocalizacaoListAPIView.as_view(), name = 'localizacao_list_api'),
 ]

@@ -9,15 +9,15 @@ class DespesaSerializer(serializers.ModelSerializer):
 
 class OrgaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Despesa
+        model = Orgao
         fields = '__all__'
 
 class InstituicaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Despesa
+        model = Instituicao
         fields = '__all__'
 
 class LocalizacaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Despesa
+        model = Localizacao
         fields = '__all__'

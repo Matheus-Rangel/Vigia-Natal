@@ -2,14 +2,15 @@ from django.db import models
 from django.utils import timezone
 
 class Localizacao(models.Model):
+
     estado = models.CharField(max_length = 2)
     cidade = models.CharField(max_length = 50)
     bairro = models.CharField(max_length = 50)
     endereco = models.CharField(max_length = 256)
     cep = models.CharField(max_length = 8)
 
-    latitude = models.DecimalField(null = False)
-    longitude = models.DecimalField(null = False)
+    latitude = models.DecimalField(null = False, max_digits=12, decimal_places=9)
+    longitude = models.DecimalField(null = False, max_digits=12, decimal_places=9)
     def __str__(self):
         str = self.estado + ', ' + self.cidade +', ' + self.bairro
         if self.endereco != '':
@@ -39,10 +40,10 @@ class Orgao(models.Model):
 class Despesa(models.Model):
     descricao = models.CharField(max_length = 256)
 
-    empenhado = models.DecimalField()
-    anulado = models.DecimalField()
-    liquidado = models.DecimalField()
-    pago = models.DecimalField()
+    empenhado = models.DecimalField(max_digits=15, decimal_places=2)
+    anulado = models.DecimalField(max_digits=15, decimal_places=2)
+    liquidado = models.DecimalField(max_digits=15, decimal_places=2)
+    pago = models.DecimalField(max_digits=15, decimal_places=2)
 
     data_inicio = models.DateField()
     data_update = models.DateField()
