@@ -8,8 +8,8 @@ class Localizacao(models.Model):
     endereco = models.CharField(max_length = 256)
     cep = models.CharField(max_length = 8)
 
-    latitude = models.FloatField(null = False)
-    longitude = models.FloatField(null = False)
+    latitude = models.DecimalField(null = False)
+    longitude = models.DecimalField(null = False)
     def __str__(self):
         str = self.estado + ', ' + self.cidade +', ' + self.bairro
         if self.endereco != '':
@@ -39,10 +39,10 @@ class Orgao(models.Model):
 class Despesa(models.Model):
     descricao = models.CharField(max_length = 256)
 
-    empenhado = models.FloatField()
-    anulado = models.FloatField()
-    liquidado = models.FloatField()
-    pago = models.FloatField()
+    empenhado = models.DecimalField()
+    anulado = models.DecimalField()
+    liquidado = models.DecimalField()
+    pago = models.DecimalField()
 
     data_inicio = models.DateField()
     data_update = models.DateField()
