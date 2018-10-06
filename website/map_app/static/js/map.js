@@ -5,14 +5,14 @@ function initMap() {
     center: new google.maps.LatLng(-5.7793, -35.2009)
   });
 
-  // Recebe em json todas as instituições 
+  // Recebe em json todas as instituições
   let instituicoes = [];
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         JSON.parse(xhttp.responseText).forEach( function (element) {
           instituicoes.push(element);
-        }); 
+        });
       }
   };
   xhttp.open("GET", "api/instituicoes", false);
@@ -25,9 +25,10 @@ function initMap() {
       if (this.readyState == 4 && this.status == 200) {
         JSON.parse(xhttp2.responseText).forEach( function (element) {
           orgaos.push(element);
-        }); 
+        });
       }
   };
+
   xhttp2.open("GET", "api/orgaos", false);
   xhttp2.send();
 
@@ -41,10 +42,10 @@ function initMap() {
         if (element.localizacao != null) {
           despesas.push(element);
         }
-      }); 
+      });
     }
   };
-  xhttp3.open("GET", "api/despesas/2018", false);
+  xhttp3.open("GET", "api/despesa/ano/2018", false);
   xhttp3.send();
 
   // Define um icone diferente para as instituições, orgãos e as despesas
@@ -60,9 +61,10 @@ function initMap() {
       icon: iconBase + 'grn-stars.png'
     }
   };
-  
+
   // Adiciona todas as marcações de instituições
   let markers_inst = instituicoes.map(function(instituicao, i) {
+    console.log(instituicao.localizacao)
     let marker = new google.maps.Marker({
       position: new google.maps.LatLng(instituicao.localizacao.latitude, instituicao.localizacao.longitude),
       icon: icons['instituicao'].icon,
@@ -80,19 +82,22 @@ function initMap() {
 
   // Adiciona todas as marcações de orgãos
   let markers_orgaos = orgaos.map(function(orgao, i) {
-    let marker = new google.maps.Marker({
-      position: new google.maps.LatLng(orgao.localizacao.latitude, orgao.localizacao.longitude),
-      icon: icons['orgao'].icon,
-      title: orgao.nome,
-      map: map
-    });
+    console.log(orgao)
+    if(orgao.localizacao != null){
+      let marker = new google.maps.Marker({
+        position: new google.maps.LatLng(orgao.localizacao.latitude, orgao.localizacao.longitude),
+        icon: icons['orgao'].icon,
+        title: orgao.nome,
+        map: map
+      });
 
-    marker.addListener('click', function() {
-      let detalhe_despesa = document.getElementById('detalhe');
-      detalhe_despesa.style.backgroundColor = "green";
-    });
+      marker.addListener('click', function() {
+        let detalhe_despesa = document.getElementById('detalhe');
+        detalhe_despesa.style.backgroundColor = "green";
+      });
 
-    return marker;
+      return marker;
+    }
   });
 
   // Adiciona todas as marcações das despesas
@@ -113,8 +118,4 @@ function initMap() {
 
     return marker;
   });
-
-  let markers = markers_inst.concat(markers_orgaos).concat(markers_despesas);
-
-  let markerCluster = new MarkerClusterer(map, markers,{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 }
