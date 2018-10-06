@@ -37,15 +37,12 @@ class DespesaLocalizacaoListAPIView(ListAPIView):
         ano = self.kwargs['ano']
         return Despesa.objects.filter(data_inicio__year = ano, localizacao = l)
 
-class DespesaRetriveAPIView(RetrieveAPIView):
-    lookup_field = 'pk'
-    serializer_class = DespesaSerializer
-    def get_queryset(self):
-        return Despesa.objects.filter(id = self.kwargs['pk'])
-
 class DespesaCreateAPIView(CreateAPIView):
     serializer_class = DespesaSerializer
-    def perform_create(self, serializer):
-        serializer.save(data_update = datetime.datetime.now())
     def get_queryset(self):
-        return Despesa.objects.all()
+        return Despesa.objects.filter(pk = self.kwargs['pk'])
+
+class DespesaRetriveAPIView(RetrieveAPIView):
+    serializer_class = DespesaSerializer
+    def get_queryset(self):
+        return Despesa.objects.filter(pk = self.kwargs['pk'])

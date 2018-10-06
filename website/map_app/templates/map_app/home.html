@@ -8,17 +8,13 @@
 
   {% block body_block %}
     <div class="container-fluid" id="map"></div>
-      <script>
-        var map;
-        function initMap() {
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -5.7793, lng: -35.2009},
-            zoom: 12
-          });
-        }
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYMMLBdCqo48P7wxBlQSDRZVUiobw-9CM&callback=initMap"
-      async defer></script>
+
+    <div class="container-fluid" id="detalhe" style="width: 200px; height: 300px; background-color: blueviolet"></div>
+    
+    <!-- Arquivos JavaScript-->
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script src="{% static 'js/map.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYMMLBdCqo48P7wxBlQSDRZVUiobw-9CM&callback=initMap"async defer></script>
   {% endblock %}
 
 </html>
