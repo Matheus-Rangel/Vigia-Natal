@@ -16,6 +16,7 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
+
 {% if form.errors and not form.non_field_errors %}
 <p class="errornote">
 {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
@@ -61,6 +62,6 @@
     <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}">
   </div>
 </form>
-
+  <a href="{% url 'home' %}">Voltar</a>
 </div>
 {% endblock %}
