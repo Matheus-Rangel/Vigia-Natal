@@ -2,7 +2,9 @@ from django.db import models
 from django.utils import timezone
 
 class Localizacao(models.Model):
-
+    class Meta:
+        verbose_name = 'localização'
+        verbose_name_plural = 'localizações'
     estado = models.CharField(max_length = 2)
     cidade = models.CharField(max_length = 50)
     bairro = models.CharField(max_length = 50)
@@ -19,6 +21,9 @@ class Localizacao(models.Model):
 
 
 class Instituicao(models.Model):
+    class Meta:
+        verbose_name = 'Instituição'
+        verbose_name_plural = 'Instituições'
     nome = models.CharField(max_length = 256)
     telefone = models.CharField(max_length = 32, blank = True)
     email = models.EmailField(blank = True)
@@ -28,6 +33,9 @@ class Instituicao(models.Model):
         return self.nome
 
 class Orgao(models.Model):
+    class Meta:
+        verbose_name = 'Orgão'
+        verbose_name_plural = 'Orgãos'
     nome = models.CharField(max_length = 256)
     telefone = models.CharField(max_length = 32, blank = True)
     email = models.EmailField(blank = True)
@@ -35,7 +43,10 @@ class Orgao(models.Model):
     instituicao = models.ForeignKey(Instituicao, on_delete = models.CASCADE)
     localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True)
     def __str__(self):
-        return self.nome
+        str = self.instituicao.nome
+        str += ' - '
+        str += self.nome
+        return str
 
 class Despesa(models.Model):
     descricao = models.TextField()

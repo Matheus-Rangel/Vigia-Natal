@@ -8,6 +8,7 @@
     {% endblock %}
   </head>
   <body>
+    {% block navbar %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="{% url 'home' %}">Vigia Natal</a>
 
@@ -30,14 +31,11 @@
                 Opções
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'despesa_create' %}">Cadastrar Despesa</a>
-                <a class="dropdown-item" href="{% url 'orgao_create'%}">Cadastrar Orgão</a>
-                <a class="dropdown-item" href="{% url 'despesa_list'%}">Lista de Despesas</a>
-                <a class="dropdown-item" href="{% url 'orgao_list'%}">Lista de Orgãos</a>
+                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
               </div>
             </li class = >
             <li>
-              <a href="{% url 'logout' %}">Sair</a>
+              <a href="{% url 'logout' %}"  class="btn btn-secondary mr-1 mt-1" role="button">Sair</a>
             </li>
           {% else %}
             <li class="nav-item dropdown">
@@ -49,12 +47,12 @@
                 <a class="dropdown-item" href="{% url 'orgao_list'%}">Lista de Orgãos</a>
               </div>
             </li>
-            <li><a href="{% url 'login' %}" class="btn btn-primary mr-1 mt-1" role="button" >Entrar</a></li>
+            <li><a href="{% url 'admin:index' %}" class="btn btn-primary mr-1 mt-1" role="button">Entrar</a></li>
           {% endif %}
             </ul>
           </div>
         </nav>
-
+        {% endblock %}
     {% block body_block %}
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
