@@ -8,7 +8,7 @@
         <h6> <a href="{% url 'despesa_detail' pk=despesa.pk %}">{{despesa.descricao}}</a> </h6>
         <div class="valordespesa">
           <p class="lead">Valor: R${{despesa.valor|floatformat:2}}</p>
-        <div/>
+        </div>
       </div>
     </li>
     {% endfor %}

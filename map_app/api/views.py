@@ -50,6 +50,11 @@ class LocalizacaoListAPIView(ListAPIView):
     def get_queryset(self):
         return Localizacao.objects.all()
 
+class OrgaoListAPIView(ListAPIView):
+    serializer_class = OrgaoSerializer
+    def get_queryset(self):
+        return Orgao.objects.all()
+
 class LocalizacaoAPIView(RetrieveAPIView):
     lookup_field = 'pk'
     serializer_class = LocalizacaoSerializer
@@ -59,11 +64,17 @@ class LocalizacaoAPIView(RetrieveAPIView):
 class InstituicaoAPIView(RetrieveAPIView):
     lookup_field = 'pk'
     serializer_class = InstituicaoSerializer
+    def get_queryset(self):
+        return Instituicao.objects.filter(pk = self.kwargs['pk'])
 
 class DespesaAPIView(RetrieveAPIView):
     lookup_field = 'pk'
     serializer_class = DespesaSerializer
+    def get_queryset(self):
+        return Despesa.objects.filter(pk = self.kwargs['pk'])
 
 class OrgaoAPIView(RetrieveAPIView):
     lookup_field = 'pk'
     serializer_class = OrgaoSerializer
+    def get_queryset(self):
+        return Orgao.objects.filter(pk = self.kwargs['pk'])
