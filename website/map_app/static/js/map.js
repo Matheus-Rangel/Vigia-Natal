@@ -28,7 +28,7 @@ function initMap() {
         }); 
       }
   };
-  xhttp2.open("GET", "api/orgaos", false);
+  xhttp2.open("GET", "api/orgao/pk/1", false);
   xhttp2.send();
 
   // Recebe em json todas as despesas de um dado ano
@@ -41,10 +41,10 @@ function initMap() {
         if (element.localizacao != null) {
           despesas.push(element);
         }
-      }); 
+      });
     }
   };
-  xhttp3.open("GET", "api/despesas/2018", false);
+  xhttp3.open("GET", "api/despesa/ano/2018", false);
   xhttp3.send();
 
   // Define um icone diferente para as instituições, orgãos e as despesas
