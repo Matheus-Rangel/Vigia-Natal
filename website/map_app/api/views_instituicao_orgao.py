@@ -2,11 +2,6 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from map_app.models import Instituicao, Orgao
 from map_app.api.serializers import InstituicaoSerializer, OrgaoSerializer
 
-class OrgaoListAPIView(ListAPIView):
-    serializer_class = OrgaoSerializer
-    def get_queryset(self):
-        return Orgao.objects.all()
-
 class InstituicaoListAPIView(ListAPIView):
     serializer_class = InstituicaoSerializer
     def get_queryset(self):
@@ -39,6 +34,11 @@ class OrgaoRetriveAPIView(RetrieveAPIView):
     serializer_class = OrgaoSerializer
     def get_queryset(self):
         return Orgao.objects.filter(id = self.kwargs['pk'])
+
+class OrgaoListAPIView(ListAPIView):
+    serializer_class = OrgaoSerializer
+    def get_queryset(self):
+        return Orgao.objects.all()
 
 class OrgaoNomeRetriveAPIView(RetrieveAPIView):
     lookup_field = 'nome'
