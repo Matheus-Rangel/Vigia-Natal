@@ -1,0 +1,27 @@
+{% extends "map_app/base.html" %}
+  {% block body_block %}
+  <div class="conteiner">
+    <h1>Cadastrar Comentário</h1>
+    <form class="comentario-form"  method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button type="submit" class='save btn btn-default'>Salvar</button>
+
+    </form>
+  </div>
+  <ul>
+    {% for comentario in comentario_list %}
+
+     <li>
+      <div class="comentario conteiner">
+        <h6> <a href="{% url 'comentario_detail' pk=comentario.pk %}">{{comentario.despesa}}</a> </h6>
+        <div class="Descrição">
+          <p class="lead">Autor: {{comentario.autor}}</p>
+          <p class="lead">Email: {{comentario.email}}</p>
+          <p class="lead">Autor: {{comentario.comentario}}</p>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endblock %}
