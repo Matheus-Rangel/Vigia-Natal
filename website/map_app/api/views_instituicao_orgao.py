@@ -35,6 +35,11 @@ class OrgaoRetriveAPIView(RetrieveAPIView):
     def get_queryset(self):
         return Orgao.objects.filter(id = self.kwargs['pk'])
 
+class OrgaoListAPIView(ListAPIView):
+    serializer_class = OrgaoSerializer
+    def get_queryset(self):
+        return Orgao.objects.all()
+
 class OrgaoNomeRetriveAPIView(RetrieveAPIView):
     lookup_field = 'nome'
     serializer_class = OrgaoSerializer

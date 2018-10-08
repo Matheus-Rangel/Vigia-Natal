@@ -8,7 +8,7 @@ urlpatterns = [
     path('despesa/ano/<int:ano>', views_despesa.DespesaAnoListAPIView.as_view(), name='despesa_ano'),
     path('despesa/<int:ano>/<int:orgao>', views_despesa.DespesaOrgaoListAPIView.as_view(), name = 'despesa_orgao'),
     path('despesa/<int:ano>/<int:instituicao>', views_despesa.DespesaInstituicaoListAPIView.as_view(), name = 'despesa_instituicao'),
-    path('despesa/<int:ano>/<int:localizacao>', views_despesa.DespesaLocalizacaoListAPIView.as_view(), name = 'despesa_localizacao'),
+    #path('despesa/<int:ano>/<int:localizacao>', views_despesa.DespesaLocalizacaoListAPIView.as_view(), name = 'despesa_localizacao'),
     path('despesa/create', views_despesa.DespesaCreateAPIView.as_view(), name = 'despesa_create'),
 
     path('instituicoes', views_instituicao_orgao.InstituicaoListAPIView.as_view(), name = 'instituicao_list'),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('instituicao/nome/<nome>', views_instituicao_orgao.InstituicaoNomeRetriveAPIView.as_view(), name = 'instituicao_nome_retrive'),
     path('instituicao/create', views_instituicao_orgao.InstituicaoCreateAPIView.as_view(), name = 'instituicao_create'),
 
+    path('orgaos', views_instituicao_orgao.OrgaoListAPIView.as_view(), name = 'orgao_list'),
     path('orgao/pk/<int:pk>', views_instituicao_orgao.OrgaoRetriveAPIView.as_view(), name = 'orgao_id_retrive'),
     path('orgao/nome/<nome>', views_instituicao_orgao.OrgaoNomeRetriveAPIView.as_view(), name = 'orgao_nome_retrive'),
     path('orgao/nome/<nome>/instituicao/<int:instituicao>', views_instituicao_orgao.OrgaoNomeInstituicaoRetriveAPIView.as_view(), name = 'orgao_nome_instituicao_retrive'),
