@@ -84,7 +84,7 @@ function initMap() {
       let email_inst = document.getElementById('email');
       let site_inst = document.getElementById('site');
       let telefone_inst = document.getElementById('telefone');
-      
+
       //Seta as informações da Instituição em questão
       nome_inst.innerHTML = (instituicao.nome != "") ? instituicao.nome : 'Não informado';
       email_inst.innerHTML = (instituicao.email != "") ? instituicao.email : 'Não informado';
@@ -106,34 +106,34 @@ function initMap() {
         title: orgao.nome,
         map: map
       });
-      
+
       marker.addListener('click', function() {
         //Pega a div principal e mostra ela caso estivesse escondida
         let detalhe_despesa = document.getElementById('detalhe');
         if (detalhe_despesa.style.display == "none") {
           detalhe_despesa.style.display = "block";
         }
-  
+
         //Recupera cada campo a ser modificado
         let nome_orgao = document.getElementById('nome');
         let email_orgao = document.getElementById('email');
         let site_orgao = document.getElementById('site');
         let telefone_orgao = document.getElementById('telefone');
-        
+
         //Seta as informações do Orgão em questão
         nome_orgao.innerHTML = (orgao.nome != "") ? orgao.nome : 'Não informado';
         email_orgao.innerHTML = (orgao.email != "") ? orgao.email : 'Não informado';
         site_orgao.innerHTML = (orgao.site != "") ? orgao.site : 'Não informado';
         telefone_orgao.innerHTML = (orgao.telefone != "") ? orgao.telefone : 'Não informado';
-  
+
         //Setar informações das despesas do Orgão na div despesa
       });
-  
+
       return marker;
     } else {
       return null;
     }
-    
+
   });
 
   // Adiciona todas as marcações das despesas
@@ -157,7 +157,7 @@ function initMap() {
       let email = document.getElementById('email');
       let site = document.getElementById('site');
       let telefoneo = document.getElementById('telefone');
-      
+
       //Seta as informações do Orgão da despesa em questão
       nome.innerHTML = (despesa.orgao.nome != "") ? despesa.orgao.nome : 'Não informado';
       email.innerHTML = (despesa.orgao.email != "") ? despesa.orgao.email : 'Não informado';

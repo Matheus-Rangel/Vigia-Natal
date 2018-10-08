@@ -17,7 +17,10 @@ urlpatterns = [
     path('instituicao/nome/<nome>', views_instituicao_orgao.InstituicaoNomeRetriveAPIView.as_view(), name = 'instituicao_nome_retrive'),
     path('instituicao/create', views_instituicao_orgao.InstituicaoCreateAPIView.as_view(), name = 'instituicao_create'),
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c98aba93297b51bb8be368c5b4c716d4f21aa696
     path('orgaos', views_instituicao_orgao.OrgaoListAPIView.as_view(), name = 'orgao_list'),
     path('orgao/pk/<int:pk>', views_instituicao_orgao.OrgaoRetriveAPIView.as_view(), name = 'orgao_id_retrive'),
     path('orgao/nome/<nome>', views_instituicao_orgao.OrgaoNomeRetriveAPIView.as_view(), name = 'orgao_nome_retrive'),
