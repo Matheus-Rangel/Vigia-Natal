@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.core.serializers import serialize
 
-from map_app.models import Despesa, Orgao, Instituicao
-from map_app.forms import DespesaForm, OrgaoForm, InstituicaoForm
+from map_app.models import Despesa, Orgao, Instituicao, Comentario
+from map_app.forms import DespesaForm, OrgaoForm, InstituicaoForm, ComentarioForm
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -376,3 +376,17 @@ class InstituicaoUpdateView(LoginRequiredMixin, UpdateView):
     redirect_field_name = 'map_app/instituicao_detail.html'
     form_class = InstituicaoForm
     model = Instituicao
+
+#class ComentarioListView(ListView):
+    #model = Comentario
+    #def get_queryset(self):
+        #return Comentario.objects.all()
+
+class CreateComentarioView(CreateView):
+
+    form_class = ComentarioForm
+    model = Comentario
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comentario_list'] = Comentario.objects.filter(comentario = self.kwargs['pk'])
+        return context
