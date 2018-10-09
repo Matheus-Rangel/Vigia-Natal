@@ -77,7 +77,7 @@ function initMap() {
       detalhe_despesa.style.display = "block";
 
       let despesa_div = document.getElementById('despesa');
-      despesa_div.style.display = "none";
+      despesa_div.style.display = "block";
 
       let titulo = document.getElementById('titulo');
       titulo.innerHTML = `<h1>Informações sobre o Instituição</h1>`;
@@ -113,59 +113,61 @@ function initMap() {
             if (this.readyState == 4 && this.status == 200) {
               JSON.parse(xhttp_despesas.responseText).forEach( function (despesa) {
                 despesa_div.innerHTML += `
-                  <div class="row">
-                    <div class="col-2">
-                      <b>Descrição:</b>
+                  <div class="despesa_item">
+                    <div class="row">
+                      <div class="col-2">
+                        <b>Descrição:</b>
+                      </div>
+                        
+                      <div class="col-10">
+                        ${despesa.descricao}
+                      </div>
                     </div>
-                      
-                    <div class="col-6">
-                      ${despesa.descricao}
+            
+                    <div class="row">
+                      <div class="col-2">
+                        <b>Data de inicio:</b>
+                      </div>
+                        
+                      <div class="col-10">
+                        ${despesa.data_inicio} (Ano-Mês-Dia)
+                      </div>
                     </div>
-                  </div>
-          
-                  <div class="row">
-                    <div class="col-2">
-                      <b>Data de inicio:</b>
+            
+                    <div class="row">
+                      <div class="col-3">
+                        <b>Empenhado:</b>
+                      </div>
+                        
+                      <div class="col-3">
+                        <b>Anulado:</b>
+                      </div>
+            
+                      <div class="col-3">
+                        <b>Liquidado:</b>
+                      </div>
+                        
+                      <div class="col-3">
+                        <b>Pago:</b>
+                      </div>
                     </div>
-                      
-                    <div class="col-6">
-                      ${despesa.data_inicio} (Ano-Mês-Dia)
-                    </div>
-                  </div>
-          
-                  <div class="row">
-                    <div class="col-2">
-                      <b>Empenhado:</b>
-                    </div>
-                      
-                    <div class="col-2">
-                      <b>Anulado:</b>
-                    </div>
-          
-                    <div class="col-2">
-                      <b>Liquidado:</b>
-                    </div>
-                      
-                    <div class="col-2">
-                      <b>Pago:</b>
-                    </div>
-                  </div>
-          
-                  <div class="row">
-                    <div class="col-2">
-                      ${despesa.empenhado}
-                    </div>
-                      
-                    <div class="col-2">
-                      ${despesa.anulado}
-                    </div>
-          
-                    <div class="col-2">
-                      ${despesa.liquidado}
-                    </div>
-                      
-                    <div class="col-2">
-                      ${despesa.pago}
+            
+                    <div class="row">
+                      <div class="col-3">
+                        ${despesa.empenhado}
+                      </div>
+                        
+                      <div class="col-3">
+                        ${despesa.anulado}
+                      </div>
+            
+                      <div class="col-3">
+                        ${despesa.liquidado}
+                      </div>
+                        
+                      <div class="col-3">
+                        ${despesa.pago}
+                      </div>
                     </div>
                   </div>
                   <hr>
@@ -237,7 +239,7 @@ function initMap() {
                         <b>Descrição:</b>
                       </div>
                         
-                      <div class="col-6">
+                      <div class="col-10">
                         ${despesa.descricao}
                       </div>
                     </div>
@@ -247,43 +249,43 @@ function initMap() {
                         <b>Data de inicio:</b>
                       </div>
                         
-                      <div class="col-6">
+                      <div class="col-10">
                         ${despesa.data_inicio} (Ano-Mês-Dia)
                       </div>
                     </div>
             
                     <div class="row">
-                      <div class="col-2">
+                      <div class="col-3">
                         <b>Empenhado:</b>
                       </div>
                         
-                      <div class="col-2">
+                      <div class="col-3">
                         <b>Anulado:</b>
                       </div>
             
-                      <div class="col-2">
+                      <div class="col-3">
                         <b>Liquidado:</b>
                       </div>
                         
-                      <div class="col-2">
+                      <div class="col-3">
                         <b>Pago:</b>
                       </div>
                     </div>
             
                     <div class="row">
-                      <div class="col-2">
+                      <div class="col-3">
                         ${despesa.empenhado}
                       </div>
                         
-                      <div class="col-2">
+                      <div class="col-3">
                         ${despesa.anulado}
                       </div>
             
-                      <div class="col-2">
+                      <div class="col-3">
                         ${despesa.liquidado}
                       </div>
                         
-                      <div class="col-2">
+                      <div class="col-3">
                         ${despesa.pago}
                       </div>
                     </div>
@@ -353,7 +355,7 @@ function initMap() {
             <b>Descrição:</b>
           </div>
             
-          <div class="col-6">
+          <div class="col-10">
             ${despesa.descricao}
           </div>
         </div>
@@ -363,7 +365,7 @@ function initMap() {
             <b>Data de inicio:</b>
           </div>
             
-          <div class="col-6">
+          <div class="col-10">
             ${despesa.data_inicio} (Ano-Mês-Dia)
           </div>
         </div>
