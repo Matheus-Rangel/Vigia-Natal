@@ -21,14 +21,14 @@ class DespesaOrgaoListAPIView(ListAPIView):
 
 class DespesaInstituicaoListAPIView(ListAPIView):
     serializer_class = DespesaSerializer
+    
     def get_queryset(self):
         i = self.kwargs['instituicao']
         ano = self.kwargs['ano']
         orgaos = Orgao.objects.filter(instituicao = i)
         despesas = []
         for o in orgaos:
-            despesas += Despesa.objects.filter(orgao = o, data_inicio__year = ano)
-        return despesas
+            return Despesa.objects.filter(orgao = o, data_inicio__year = ano)
 
 class DespesaLocalizacaoListAPIView(ListAPIView):
     serializer_class = DespesaSerializer
