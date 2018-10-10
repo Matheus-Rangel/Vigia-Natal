@@ -7,19 +7,20 @@ class LocalizacaoSerializer(serializers.ModelSerializer):
         model = Localizacao
         fields = '__all__'
 
-class DespesaSerializer(serializers.ModelSerializer):
-    localizacao = LocalizacaoSerializer(read_only=True)
-    
-    class Meta:
-        model = Despesa
-        exclude = ['data_update']
-
 class OrgaoSerializer(serializers.ModelSerializer):
     localizacao = LocalizacaoSerializer(read_only=True)
 
     class Meta:
         model = Orgao
         fields = '__all__'
+
+class DespesaSerializer(serializers.ModelSerializer):
+    localizacao = LocalizacaoSerializer(read_only=True)
+    orgao = OrgaoSerializer(read_only=True)
+
+    class Meta:
+        model = Despesa
+        exclude = ['data_update']
 
 class InstituicaoSerializer(serializers.ModelSerializer):
     localizacao = LocalizacaoSerializer(read_only=True)

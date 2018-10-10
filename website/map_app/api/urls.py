@@ -6,8 +6,8 @@ from map_app.api import views_despesa, views_localizacao, views_instituicao_orga
 urlpatterns = [
     path('despesa/id/<int:pk>', views_despesa.DespesaRetriveAPIView.as_view(), name='despesa_id'),
     path('despesa/ano/<int:ano>', views_despesa.DespesaAnoListAPIView.as_view(), name='despesa_ano'),
-    path('despesa/<int:ano>/<int:orgao>', views_despesa.DespesaOrgaoListAPIView.as_view(), name = 'despesa_orgao'),
-    path('despesa/<int:ano>/<int:instituicao>', views_despesa.DespesaInstituicaoListAPIView.as_view(), name = 'despesa_instituicao'),
+    path('despesa/<int:ano>/orgao/<int:orgao>', views_despesa.DespesaOrgaoListAPIView.as_view(), name = 'despesa_orgao'),
+    path('despesa/<int:ano>/instituicao/<int:instituicao>', views_despesa.DespesaInstituicaoListAPIView.as_view(), name = 'despesa_instituicao'),
     #path('despesa/<int:ano>/<int:localizacao>', views_despesa.DespesaLocalizacaoListAPIView.as_view(), name = 'despesa_localizacao'),
     path('despesa/create', views_despesa.DespesaCreateAPIView.as_view(), name = 'despesa_create'),
 

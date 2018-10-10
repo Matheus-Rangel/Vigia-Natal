@@ -1,5 +1,5 @@
 from django import forms
-from map_app.models import Despesa, Orgao, Instituicao, Localizacao
+from map_app.models import Despesa, Orgao, Instituicao, Localizacao, Comentario
 
 class DespesaForm(forms.ModelForm):
     class Meta():
@@ -20,4 +20,9 @@ class InstituicaoForm(forms.ModelForm):
 class LocalizacaoForm(forms.ModelForm):
     class Meta():
         model = Localizacao
+        fields = '__all__'
+
+class ComentarioForm(forms.ModelForm):
+    class Meta():
+        model = Comentario
         fields = '__all__'

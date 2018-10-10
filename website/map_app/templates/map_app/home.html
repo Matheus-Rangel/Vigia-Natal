@@ -8,13 +8,40 @@
 
   {% block body_block %}
     <div class="container-fluid" id="map"></div>
+    
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col">
+        Instituição <div style="background-color: blue; width: 15px; height: 15px;"></div>
+      </div>
+
+      <div class="col">
+        Orgão <div style="background-color: green; width: 15px; height: 15px;"></div>
+      </div>
+
+      <div class="col">
+        Despesa <div style="background-color: yellow; width: 15px; height: 15px;"></div>
+      </div>
+
+      <div class="col-2"></div>
+    </div>
+
     <br>
     <div class="container-fluid" id="detalhe" style="display: none" >
+      <div class="row">
+          <div class="col-2"></div>
+
+          <div class="col" id="titulo">
+          </div>
+    
+          <div class="col-2"></div>
+      </div>
+      
       <div class="row">
         <div class="col-2"></div>
         
         <div class="col-2">
-          Nome:
+          <b>Nome:</b>
         </div>
 
         <div class="col-6" id="nome">
@@ -27,24 +54,16 @@
       <div class="row">
         <div class="col-2"></div>
         
-        <div class="col-2">
-          Telefone:
-        </div>
-        
-        <div class="col-6" id="telefone">
+        <div class="col">
+            <b>Telefone:</b>
         </div>
 
-        <div class="col-2"></div>
-      </div>
-
-      <div class="row">
-        <div class="col-2"></div>
-        
-        <div class="col-2">
-          Email:
+        <div class="col">
+            <b>Email:</b>
         </div>
-        
-        <div class="col-6" id="email">
+
+        <div class="col">
+            <b>Site:</b>
         </div>
 
         <div class="col-2"></div>
@@ -53,17 +72,16 @@
       <div class="row">
         <div class="col-2"></div>
         
-        <div class="col-2">
-          Site:
-        </div>
+        <div class="col" id="telefone"></div>
         
-        <div class="col-6" id="site">
-        </div>
+        <div class="col" id="email"></div>
+
+        <div class="col" id="site"></div>
 
         <div class="col-2"></div>
       </div>
 
-      <div class="row" id="despesa">
+      <div id="despesa">
       </div>
     </div>
     
