@@ -323,7 +323,6 @@ class InstituicaoListView(ListView):
     def get_queryset(self):
         return Instituicao.objects.all()
 
-
 class DespesaDetailView(DetailView):
     model = Despesa
 
@@ -359,6 +358,18 @@ class CreateInstituicaoView(LoginRequiredMixin, CreateView):
     form_class = InstituicaoForm
     model = Instituicao
 
+class CreateLocalizacaoView(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
+    redirect_field_name = 'map_app/localizacao_detail.html'
+    form_class = LocalizacaoForm
+    model = Localizacao
+
+class UpdateLocalizacaoView(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
+    redirect_field_name = 'map_app/localizacao_detail.html'
+    form_class = LocalizacaoForm
+    model = Localizacao
+
 class DespesaUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
     redirect_field_name = 'map_app/despesa_detail.html'
@@ -370,6 +381,7 @@ class OrgaoUpdateView(LoginRequiredMixin, UpdateView):
     redirect_field_name = 'map_app/orgao_detail.html'
     form_class = OrgaoForm
     model = Orgao
+
 
 class InstituicaoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
