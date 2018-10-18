@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.core.serializers import serialize
 
-from map_app.models import Despesa, Orgao, Instituicao, Comentario
-from map_app.forms import DespesaForm, OrgaoForm, InstituicaoForm, ComentarioForm
+from map_app.models import Despesa, Orgao, Instituicao, Comentario, Localizacao
+from map_app.forms import DespesaForm, OrgaoForm, InstituicaoForm, ComentarioForm, LocalizacaoForm
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
