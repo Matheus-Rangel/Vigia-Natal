@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page = 'home'), name='logout'),
-    path('api/', include('map_app.api.urls'))
+    path('api/', include('map_app.api.urls.router'))
 ]
 # accounts/login/ [name='login']
 # accounts/logout/ [name='logout']

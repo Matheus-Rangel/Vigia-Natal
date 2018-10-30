@@ -6,7 +6,6 @@ class DespesaForm(forms.ModelForm):
         model = Despesa
         exclude = ['data_update']
 
-
 class OrgaoForm(forms.ModelForm):
     class Meta():
         model = Orgao
