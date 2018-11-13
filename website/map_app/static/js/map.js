@@ -15,7 +15,7 @@ function initMap() {
         });
       }
   };
-  xhttp.open("GET", "api/instituicoes", false);
+  xhttp.open("GET", "api/instituicao", false);
   xhttp.send();
 
   // Recebe em json todos os orgãos
@@ -29,7 +29,7 @@ function initMap() {
       }
   };
 
-  xhttp2.open("GET", "api/orgaos", false);
+  xhttp2.open("GET", "api/orgao", false);
   xhttp2.send();
 
   // Recebe em json todas as despesas de um dado ano

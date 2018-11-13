@@ -40,12 +40,10 @@ class Orgao(models.Model):
     telefone = models.CharField(max_length = 32, blank = True)
     email = models.EmailField(blank = True)
     site = models.URLField(blank = True)
-    instituicao = models.ForeignKey(Instituicao, on_delete = models.CASCADE)
+    instituicoes = models.ManyToManyField(Instituicao)
     localizacao = models.ForeignKey(Localizacao, on_delete = models.SET_NULL, null = True)
     def __str__(self):
-        str = self.instituicao.nome
-        str += ' - '
-        str += self.nome
+        str = self.nome
         return str
 
 class Despesa(models.Model):

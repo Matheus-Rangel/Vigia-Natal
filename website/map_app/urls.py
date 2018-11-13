@@ -1,10 +1,9 @@
 from django.urls import path
-from map_app.views import home, despesa, orgao, instituicao, localizacao
+from map_app.views import home, despesa, orgao, instituicao, localizacao, flex
 
 urlpatterns = [
     path('', home.HomeView.as_view(), name = 'home'),
-    path('dados_gerais', home.DadosGeraisView.as_view(), name = 'dados_gerais'),
-    
+
     path('despesa/list', despesa.DespesaListView.as_view(), name = 'despesa_list'),
     path('despesa/<int:pk>', despesa.DespesaDetailView.as_view(), name = 'despesa_detail'),
     path('despesa/cadastrar', despesa.DespesaCreateView.as_view(), name = 'despesa_create'),
@@ -22,4 +21,8 @@ urlpatterns = [
 
     path('localizacao/cadastrar', localizacao.LocalizacaoCreateView.as_view(), name = 'localizacao_create'),
     path('localizacao/<int:pk>/update', localizacao.LocalizacaoCreateView.as_view(), name = 'localizacao_update'),
+
+    path('reclamar', include('reclama_app.urls'))
+    path('atualizar', include('atualiza_app.urls'))
+    path('informacoes', include('informacoes_app.urls'))
 ]
